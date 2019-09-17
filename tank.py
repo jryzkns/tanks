@@ -1,6 +1,5 @@
 import pygame as pg
 import math
-from pygame.locals import *
 
 
 # adapted from: https://www.pygame.org/wiki/RotateCenter
@@ -43,15 +42,15 @@ class PlayerTank(Tank):
         self.speed = 0.25
 
     def key_press_handle(self,key):
-        if key == K_q:
+        if key == pg.K_q:
             self.heading += 10
-        elif key == K_e:
+        elif key == pg.K_e:
             self.heading -= 10
 
     def key_down_handle(self,keymap):
-        if keymap[K_w]:
+        if keymap[pg.K_w]:
             self.move(1)
-        elif keymap[K_s]:
+        elif keymap[pg.K_s]:
             self.move(-1)
 
 
@@ -67,6 +66,6 @@ class EnemyTank(Tank):
     def update(self, player_x, player_y, dt):
 
         # automatically faces the player, adapt new feature to turn slower
-        self.heading = -1*to_degree(
+        self.heading = 90 - to_degree(
             math.atan2(self.y - player_y,self.x - player_x)
-            ) + 90
+            )
